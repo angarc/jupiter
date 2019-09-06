@@ -1,0 +1,7 @@
+<%= simple_form_for @project do |f| %>
+  <%= f.input :name %>
+
+  <%= f.association :users, label_method: :full_name %>
+
+  <%= f.submit 'Update', class: 'btn btn-md btn-info' %>
+<% end %>

@@ -1,0 +1,22 @@
+<li class="list-group-item" data-id="<%= project.id %>">
+  <div class='info float-left'>
+    <%= link_to project.name, project %>
+  </div>
+
+  <div class='actions float-right'>
+    <%= link_to fa_icon('eye'), 
+                project, 
+                class: 'btn btn-sm btn-warning' %>
+
+    <%= link_to fa_icon('edit'),
+                edit_project_path(project), 
+                class: 'btn btn-sm btn-info' %>
+
+    <%= link_to fa_icon('trash'), 
+                project, 
+                method: :delete, 
+                remote: true, 
+                data: { confirm: 'Are you sure you want to delete this project?' }, 
+                class: 'btn btn-sm btn-danger' %>
+  </div>
+</li>

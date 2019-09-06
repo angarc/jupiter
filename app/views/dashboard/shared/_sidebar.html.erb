@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%= root_path %>">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-meteor"></i>
     </div>
@@ -14,7 +14,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="<%= root_path %>%">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
@@ -33,12 +33,21 @@
     Projects
   </div>
 
-  <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="charts.html">
+    <a class="nav-link" href="<%= projects_path %>">
       <i class="fas fa-fw fa-project-diagram"></i>
-      <span>Project</span></a>
+      <span>Project Overview</span></a>
   </li>
+
+  <!-- Nav Item - Charts -->
+
+  <% current_user.projects.each do |project| %>
+    <li class="nav-item">
+      <a class="nav-link" href="<%= project_path(project) %>">
+        <i class="fas fa-fw fa-project-diagram"></i>
+        <span><%= project.name %></span></a>
+    </li>
+  <% end %>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

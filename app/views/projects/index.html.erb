@@ -1,0 +1,38 @@
+<h1 class='float-left'>Projects</h1>
+
+<div class='float-right'>
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newProjectModal">
+    <%= fa_icon('plus') %>
+  </button>
+</div>
+
+<div class='fix-float'></div>
+
+<!-- Button trigger modal -->
+
+<ul class="list-group projects mt-3">
+  <%= render @projects %>
+</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="newProjectModal" tabindex="-1" role="dialog" aria-labelledby="newProjectModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newProjectModalTitle">Create a New Project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for @project, remote: true  do |f| %>
+      <div class="modal-body">
+        <%= f.input :name %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit 'Create', class: 'btn btn-success' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

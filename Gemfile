@@ -16,6 +16,9 @@ gem 'image_processing', '~> 1.2'
 gem 'devise', '~> 4.7'
 gem 'devise_invitable', '~> 2.0', '>= 2.0.1'
 gem 'friendly_id', '~> 5.2', '>= 5.2.5'
+gem 'petergate'
+gem 'font-awesome-rails'
+gem 'simple_form', '~> 4.1'
 
 
 gem 'bootsnap', '>= 1.4.2', require: false
