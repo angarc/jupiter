@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:destroy, :show, :update, :edit]
 
   def index
     @projects = current_user.projects
@@ -12,16 +13,16 @@ class ProjectsController < ApplicationController
       current_user.projects << @project
       flash[:success] = 'Successfully Created Project'
       redirect_to @project
+    else
+      flash[:danger] = @project.errors.full_messages.to_sentence
+      redirect_to projects_path
     end
   end
 
   def edit
-    @project = current_user.projects.find(params[:id])
   end
 
   def update
-    @project = current_user.projects.find(params[:id])
-
     if @project.update project_params
       flash[:success] = 'Successfully Updated Project'
       redirect_to @project
@@ -32,12 +33,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = current_user.projects.find(params[:id])
   end
 
   def destroy
     return if current_user.role != :admin
-    @project = current_user.projects.find(params[:id])
     @project.destroy
     respond_to do |format|
       format.js
@@ -45,6 +44,9 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def set_project
+      @project = current_user.projects.friendly.find(params[:id])
+    end
 
     def project_params
       params.require(:project).permit(:name)
