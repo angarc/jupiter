@@ -1,0 +1,3 @@
+$('#newTaskListModal').modal('hide')
+$('.task-lists').prepend('<%= j render(partial: 'task_lists/task_list', locals: { task_list: @task_list }) %>')
+$('#task_list_name').val('')

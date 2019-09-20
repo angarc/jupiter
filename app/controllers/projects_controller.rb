@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @task_lists = @project.task_lists
   end
 
   def destroy

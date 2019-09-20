@@ -1,0 +1,2 @@
+$('[data-task-list-id="<%= @task_list.id %>"]').replaceWith('<%= j render(partial: 'task_lists/task_list', locals: { task_list: @task_list }) %>')
+$('#editTaskListModal').modal('hide')

@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   
   root 'dashboard#index'
 
-  resources :projects
+  resources :projects do 
+    resources :task_lists
+  end
 end
