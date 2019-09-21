@@ -44,6 +44,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def completed_tasks
+    @project = current_user.projects.friendly.find(params[:project_id])
+    @tasks = @project.tasks.completed
+  end
+
   private
     def set_project
       @project = current_user.projects.friendly.find(params[:id])

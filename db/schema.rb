@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_09_21_020410) do
 
   create_table "tasks", force: :cascade do |t|
     t.bigint "task_list_id"
+    t.bigint "project_id"
     t.string "title"
     t.date "start_date"
     t.date "end_date"
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2019_09_21_020410) do
     t.integer "priority", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
   end
 

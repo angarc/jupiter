@@ -7,6 +7,7 @@ class Task < ApplicationRecord
   has_many :users, through: :user_tasks
 
   belongs_to :task_list
+  belongs_to :project
 
   has_many_attached :attachments
 

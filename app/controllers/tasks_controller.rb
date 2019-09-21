@@ -5,6 +5,7 @@ class TasksController < ApplicationController
     @project = Project.friendly.find(params[:project_id])
     @task_list = @project.task_lists.friendly.find(params[:task_list_id])
     @task = Task.new task_params
+    @project.tasks << @task
     @task_list.tasks << @task
 
     if @task.save

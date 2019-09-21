@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   resources :projects do 
+    get :completed_tasks
+    
     resources :task_lists do 
       resources :tasks do 
         patch :toggle_complete
