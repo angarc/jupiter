@@ -7,6 +7,7 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.date :end_date
       t.text :description
       t.boolean :private
+      t.boolean :complete, default: false
       t.integer :priority, default: 0
       t.timestamps
     end

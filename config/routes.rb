@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   resources :projects do 
     resources :task_lists do 
-      resources :tasks
+      resources :tasks do 
+        patch :toggle_complete
+      end
     end
   end
 end

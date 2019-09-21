@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2019_09_21_020410) do
     t.date "end_date"
     t.text "description"
     t.boolean "private"
+    t.boolean "complete", default: false
     t.integer "priority", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

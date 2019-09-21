@@ -21,7 +21,7 @@
   </div>
   <div class="card-body text-primary">
     <ul class='list-group' data-task-list-tasks-view-id="<%= task_list.id %>">
-      <%= render task_list.tasks %>
+      <%= render task_list.tasks.not_complete %>
     </ul>
   </div>
 </div>
