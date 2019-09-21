@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: jupiter_production
-  username: jupiter
+  username: deploy
   password: <%= ENV['JUPITER_DATABASE_PASSWORD'] %>

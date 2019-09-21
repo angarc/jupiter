@@ -20,6 +20,11 @@ gem 'petergate'
 gem 'font-awesome-rails'
 gem 'simple_form', '~> 4.1'
 
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rvm'
+
 
 gem 'bootsnap', '>= 1.4.2', require: false
 
