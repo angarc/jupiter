@@ -11,4 +11,10 @@ class Project < ApplicationRecord
 
   default_scope -> { order(created_at: :desc)}
 
+  def percentage_complete
+    return "Finished!" if self.tasks.not_complete.count == 0
+
+    "#{((self.tasks.completed.count.to_f / self.tasks.not_complete.count.to_f) * 100).to_i}%"
+  end
+
 end

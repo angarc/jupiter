@@ -1,6 +1,8 @@
 <%= simple_form_for @task, url: project_task_list_task_path(@project, @task_list, @task) do |f| %>
   <%= f.input :title, disabled: true %>
 
+  <%= f.association :users, collection: User.all, label_method: :full_name %>
+
   <div class='row'>
     <div class='col-lg-6'>
       <label>Start Date</label>

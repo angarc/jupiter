@@ -1,4 +1,7 @@
-<h1 class='float-left'><%= @project.name.titleize %></h1>
+<div class='project-info float-left'>
+  <h1><%= @project.name.titleize %></h1>
+  <strong>Percentage Complete: </strong> <span id='percent-complete'><%= @project.percentage_complete %></span>
+</div>
 
 <div class='float-right'>
   <%= link_to 'View Completed Tasks', project_completed_tasks_path(@project), class: 'btn btn-primary' %>

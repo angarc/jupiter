@@ -1,21 +1,26 @@
 <li class='list-group-item' data-task-id="<%= task.id %>">
   <div class='info float-left'>
-    <%= link_to task.title, project_task_list_task_path(@project, task.task_list, task) %>
-  </div>
-  <div class='actions float-right'>
     <% if !task.complete %>
       <%= link_to fa_icon('check'),
                   project_task_list_task_toggle_complete_path(@project, task.task_list, task),
                   method: :patch,
                   remote: true,
-                  class: 'btn btn-primary btn-sm mr-1' %>
+                  class: 'btn btn-success btn-sm' %>
     <% else %>
       <%= link_to fa_icon('times'),
                   project_task_list_task_toggle_complete_path(@project, task.task_list, task),
                   method: :patch,
                   remote: true,
-                  class: 'btn btn-primary btn-sm mr-1' %>
+                  class: 'btn btn-secondary btn-sm' %>
     <% end %>
+    <% task.users.each do |user| %>
+      <span class='badge badge-success'><%= user.full_name %></span>
+    <% end %>
+    <%= link_to task.title, project_task_list_task_path(@project, task.task_list, task), class: 'black' %>
+    <%= "(Due #{task.end_date.strftime("%h %d")})" %>
+  </div>
+
+  <div class='actions float-right'>
     <div class="dropdown float-right">
       <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= fa_icon('cog') %>
