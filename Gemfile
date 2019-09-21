@@ -13,7 +13,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
 gem 'image_processing', '~> 1.2'
 
-gem 'devise', '~> 4.7'
+
+
+gem "devise", ">= 4.7.1"
 gem 'devise_invitable', '~> 2.0', '>= 2.0.1'
 gem 'friendly_id', '~> 5.2', '>= 5.2.5'
 gem 'petergate'
