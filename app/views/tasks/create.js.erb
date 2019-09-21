@@ -1,0 +1,8 @@
+$('[data-task-list-tasks-view-id="<%= @task_list.id %>"]').html('<%= j render(@task_list.tasks) %>')
+
+$('.new_task_form').trigger('reset')
+$('#newTaskModal-<%= @task_list.id %>').modal('hide')
+$('.nav-item').removeClass('active')
+$('.tab-pane').removeClass('active')
+$('.default-task-tab').addClass('active')
+$('.default-task-pane').addClass('active')

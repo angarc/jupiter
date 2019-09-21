@@ -1,26 +1,95 @@
-<div data-controller='tasklist' class="card border-primary mb-3" data-task-list-id="<%= task_list.id %>">
+<div class="card mb-3" data-task-list-id="<%= task_list.id %>">
   <div class="card-header">
     <strong class='float-left'><%= task_list.name %></strong>
     <div class='float-right'>
-      <%= link_to fa_icon('plus'),
-                  '#',
-                  class: 'btn btn-sm btn-success',
-                  data: { action: 'newTask' } %>
+      <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#newTaskModal-<%= task_list.id %>">
+        <%= fa_icon('plus') %>
+      </button>
 
       <%= link_to fa_icon('edit'),
                   edit_project_task_list_path(@project, task_list),
                   remote: true,
-                  class: 'btn btn-sm btn-info' %>
+                  class: 'btn btn-sm btn-primary' %>
 
       <%= link_to fa_icon('trash'), 
                   project_task_list_path(@project, task_list), 
-                  class: 'btn btn-sm btn-danger',
+                  class: 'btn btn-sm btn-primary',
                   remote: true, 
                   method: :delete,
                   data: { confirm: "Are you sure you want to delete this task list? All tasks in this list will be deleted too." } %>
     </div>
   </div>
   <div class="card-body text-primary">
-    
+    <ul class='list-group' data-task-list-tasks-view-id="<%= task_list.id %>">
+      <%= render task_list.tasks %>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newTaskModal-<%= task_list.id %>" tabindex="-1" role="dialog" aria-labelledby="newTaskModalTitle-<%= task_list.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newTaskModalTitle-<%= task_list.id %>">New Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for Task.new, remote: true, url: project_task_list_tasks_path(@project, task_list), html: { class: :new_task_form } do |f| %>
+        <div class="modal-body">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active default-task-tab" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">What & When</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Description</a>
+              <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Misc</a>
+            </div>
+          </nav>
+          <div class="tab-content mt-3" id="nav-tabContent">
+            <div class="tab-pane fade show active default-task-pane" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class='row'>
+                <div class='col-lg-12'>
+                  <%= f.input :title %>
+                </div>
+
+                <div class='col-lg-12'>
+                  <%= f.association :users, collection: User.all, label_method: :full_name %>
+                </div>
+
+                <div class='col-lg-6'>
+                  <%= f.date_field :start_date, class: 'form-control' %>
+                </div>
+
+                <div class='col-lg-6'>
+                  <%= f.date_field :end_date, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <%= f.input :description %>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <div class='row'>
+                <div class='col-lg-12'>
+                  <%= f.input :attachments %>
+                </div>
+
+                <div class='col-lg-12'>
+                  <%= f.input :priority, collection: Task.priorities.keys %>
+                </div>
+
+                <div class='col-lg-12'>
+                  <%= f.input :private %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit 'Done', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

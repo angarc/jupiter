@@ -1,7 +1,7 @@
 <h1 class='float-left'><%= @project.name.titleize %></h1>
 
 <div class='float-right'>
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newTaskListModal">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskListModal">
     New Task List
   </button>
 </div>
@@ -9,32 +9,29 @@
 <div class='fix-float'></div>
 
 <div class='task-lists mt-5'>
-  <% @task_lists.each do |list| %>
-    <%= render partial: 'task_lists/task_list', locals: { task_list: list } %>
-  <% end %>
+  <%= render @task_lists %>
 </div>
 
 <div class='modal-container'>
-  <!-- Modal -->
-<div class="modal fade" id="newTaskListModal" tabindex="-1" role="dialog" aria-labelledby="newTaskListModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newTaskListModalTitle">Add a New Task List</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="modal fade" id="newTaskListModal" tabindex="-1" role="dialog" aria-labelledby="newTaskListModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newTaskListModalTitle">Add a New Task List</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= simple_form_for TaskList.new, remote: true, url: project_task_lists_path(@project) do |f| %>
+          <div class="modal-body">
+            <%= f.input :name %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="close-modal-button btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= f.submit 'Add', class: 'btn btn-md btn-primary' %>
+          </div>
+        <% end %>
       </div>
-      <%= simple_form_for TaskList.new, remote: true, url: project_task_lists_path(@project) do |f| %>
-        <div class="modal-body">
-          <%= f.input :name %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="close-modal-button btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= f.submit 'Add', class: 'btn btn-md btn-primary' %>
-        </div>
-      <% end %>
     </div>
   </div>
-</div>
 </div>

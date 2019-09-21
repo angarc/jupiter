@@ -13,7 +13,7 @@
   <hr class="sidebar-divider my-0">
 
   <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
+  <li class="nav-item <%= active?(root_path) %>">
     <a class="nav-link" href="<%= root_path %>">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
@@ -33,16 +33,16 @@
     Projects
   </div>
 
-  <li class="nav-item">
+  <li class="nav-item <%= active?(projects_path) %>">
     <a class="nav-link" href="<%= projects_path %>">
-      <i class="fas fa-fw fa-project-diagram"></i>
+      <i class="fas fa-fw fa-network-wired"></i>
       <span>Project Overview</span></a>
   </li>
 
   <!-- Nav Item - Charts -->
 
   <% current_user.projects.each do |project| %>
-    <li class="nav-item">
+    <li class="nav-item <%= active?(project_path(project)) %>">
       <a class="nav-link" href="<%= project_path(project) %>">
         <i class="fas fa-fw fa-project-diagram"></i>
         <span><%= project.name %></span></a>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_20_154319) do
+ActiveRecord::Schema.define(version: 2019_09_21_020410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,19 @@ ActiveRecord::Schema.define(version: 2019_09_20_154319) do
     t.index ["project_id"], name: "index_task_lists_on_project_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "task_list_id"
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "description"
+    t.boolean "private"
+    t.integer "priority", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
+  end
+
   create_table "user_projects", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
@@ -81,6 +94,15 @@ ActiveRecord::Schema.define(version: 2019_09_20_154319) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_user_projects_on_project_id"
     t.index ["user_id"], name: "index_user_projects_on_user_id"
+  end
+
+  create_table "user_tasks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_user_tasks_on_task_id"
+    t.index ["user_id"], name: "index_user_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -119,4 +141,6 @@ ActiveRecord::Schema.define(version: 2019_09_20_154319) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
+  add_foreign_key "user_tasks", "tasks"
+  add_foreign_key "user_tasks", "users"
 end

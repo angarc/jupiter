@@ -2,8 +2,17 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/regular';
+
+// Customize variables here
+
+$blue: #ff9f43;
+
 @import '~startbootstrap-sb-admin-2/scss/sb-admin-2';
 @import '~bootstrap/scss/bootstrap';
+
+.body {
+  // font-family: 'Montserrat', sans-serif;
+}
 
 .fix-float {
   clear: both;

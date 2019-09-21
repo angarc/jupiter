@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects
 
+  has_many :user_tasks, dependent: :destroy
+  has_many :tasks, through: :user_tasks
+
   def full_name
     "#{first_name} #{last_name}"
   end

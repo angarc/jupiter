@@ -1,9 +1,17 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ 'taskListTemplate' ]
+  static targets = [ 'taskFormTemplate', 'taskFormContainer' ]
 
-  newTaskList() {
-    document.getElementById('task-list').innerHTML += this.taskListTemplateTarget.innerHTML
+  newTask() {
+    this.taskFormContainerTarget.innerHTML = this.taskFormTemplateTarget.innerHTML
+  }
+
+  connect() {
+    console.log('connected')
+  }
+
+  disconnect() {
+    console.log('disconnect')
   }
 }

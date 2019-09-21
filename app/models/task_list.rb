@@ -3,6 +3,7 @@ class TaskList < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :project
+  has_many :tasks
 
   validates :name, presence: true
 
