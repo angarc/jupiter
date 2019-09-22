@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:destroy, :show, :update, :edit]
 
   def index
-    @projects = current_user.projects
+    @projects = Project.all
     @project = Project.new
   end
 
@@ -45,13 +45,13 @@ class ProjectsController < ApplicationController
   end
 
   def completed_tasks
-    @project = current_user.projects.friendly.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
     @tasks = @project.tasks.completed
   end
 
   private
     def set_project
-      @project = current_user.projects.friendly.find(params[:id])
+      @project = Project.all.friendly.find(params[:id])
     end
 
     def project_params
