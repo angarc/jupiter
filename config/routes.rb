@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  
+  # default_url_options :host => "jupiter.agarciadev.com"
+  default_url_options :host => "localhost:3000"
+
   devise_for :users, {
     controllers: {
       registrations: 'users/registrations',
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :projects do 
     get :completed_tasks
-    
+
     resources :task_lists do 
       resources :tasks do 
         patch :toggle_complete

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  petergate(roles: [:admin], multiple: false)
+  petergate(roles: [:super_admin, :admin], multiple: false)
 
   devise :invitable, :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :trackable
@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   has_many :user_tasks, dependent: :destroy
   has_many :tasks, through: :user_tasks
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   def full_name
     "#{first_name} #{last_name}"

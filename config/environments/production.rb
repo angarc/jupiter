@@ -86,6 +86,17 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.action_mailer.default_url_options = { host: 'jupiter.agarciadev.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    port:           587,
+    address:        'smtp.mailgun.org',
+    user_name:      Rails.application.credentials.mailgun_username,
+    password:       Rails.application.credentials.mailgun_password,
+    authentication: :plain
+  }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
