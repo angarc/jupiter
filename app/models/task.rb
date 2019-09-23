@@ -7,6 +7,8 @@ class Task < ApplicationRecord
   has_many :users, through: :user_tasks
   accepts_nested_attributes_for :users
 
+  has_many :comments, dependent: :destroy
+
   belongs_to :task_list
   belongs_to :project
 

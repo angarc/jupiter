@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     resources :task_lists do 
       resources :tasks do 
+        resources :comments, only: [:create, :update, :destroy]
         patch :toggle_complete
       end
     end
