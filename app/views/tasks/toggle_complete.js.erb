@@ -1,2 +1,6 @@
 $('[data-task-id="<%= @task.id %>"]').hide('slow')
 $('#percent-complete').html('<%= @project.percentage_complete %>') 
+
+  <% if @task.errors.count > 0 %>
+    toastr.error('<%= @task.errors.full_messages %>')
+  <% end %>

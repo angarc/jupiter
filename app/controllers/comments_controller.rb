@@ -15,6 +15,15 @@ class CommentsController < ApplicationController
       end 
     end
   end 
+  
+  def destroy
+    @task = Task.find(params[:task_id])
+    @comment = @task.comments.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.js
+    end 
+  end
 
   private
 
