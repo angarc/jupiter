@@ -1,0 +1,6 @@
+<% if @comment.errors.count == 0 %>
+  $('.comments').html('<%= j render @comments %>');   
+  $('trix-editor').html("")
+<% else %>
+  toastr.error('<%= @comment.errors.full_messages.to_sentence %>')
+<% end %>
