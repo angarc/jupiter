@@ -11,7 +11,7 @@
                   project_task_list_task_toggle_complete_path(@project, task.task_list, task),
                   method: :patch,
                   remote: true,
-                  class: 'btn btn-secondary btn-sm' %>
+                  class: 'btn btn-danger btn-sm' %>
     <% end %>
     <% task.users.each do |user| %>
       <span class='badge badge-success'><%= user.full_name %></span>

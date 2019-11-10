@@ -1,8 +1,12 @@
-$('[data-task-list-tasks-view-id="<%= @task_list.id %>"]').html('<%= j render(@task_list.tasks.not_complete) %>')
+<% if @task.errors.count == 0 %>
+  $('[data-task-list-tasks-view-id="<%= @task_list.id %>"]').html('<%= j render(@task_list.tasks.not_complete) %>')
 
-$('.new_task_form').trigger('reset')
-$('#newTaskModal-<%= @task_list.id %>').modal('hide')
-$('.nav-item').removeClass('active')
-$('.tab-pane').removeClass('active')
-$('.default-task-tab').addClass('active')
-$('.default-task-pane').addClass('active')
+  $('.new_task_form').trigger('reset')
+  $('#newTaskModal-<%= @task_list.id %>').modal('hide')
+  $('.nav-item').removeClass('active')
+  $('.tab-pane').removeClass('active')
+  $('.default-task-tab').addClass('active')
+  $('.default-task-pane').addClass('active')
+<% else %>
+  toastr.error('<%= @task.errors.full_messages.to_sentence %>')
+<% end %>

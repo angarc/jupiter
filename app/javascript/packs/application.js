@@ -13,3 +13,6 @@ import 'startbootstrap-sb-admin-2/js/sb-admin-2'
 
 import '../src/stylesheets/application.scss'
 import "controllers"
+
+import toastr from 'toastr/toastr'
+window.toastr = toastr

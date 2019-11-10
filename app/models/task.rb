@@ -14,7 +14,7 @@ class Task < ApplicationRecord
 
   has_many_attached :attachments
 
-  validates_presence_of :end_date
+  validates_presence_of :title, :end_date, :users
 
   enum priority: [:no_priority, :low, :medium, :high]
 
