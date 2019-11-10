@@ -14,6 +14,8 @@ class Task < ApplicationRecord
 
   has_many_attached :attachments
 
+  validates_presence_of :end_date
+
   enum priority: [:no_priority, :low, :medium, :high]
 
   def toggle_complete
