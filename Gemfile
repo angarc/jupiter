@@ -18,7 +18,7 @@ gem 'devise_invitable', '~> 2.0', '>= 2.0.1'
 gem 'friendly_id', '~> 5.2', '>= 5.2.5'
 gem 'petergate'
 gem 'font-awesome-rails'
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
