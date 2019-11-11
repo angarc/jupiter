@@ -1,22 +1,21 @@
 class Task < ApplicationRecord
-
   scope :completed, -> { where(complete: true) }
   scope :not_complete, -> { where(complete: false) }
 
   has_many :user_tasks, dependent: :destroy
   has_many :users, through: :user_tasks
-  accepts_nested_attributes_for :users
-
   has_many :comments, dependent: :destroy
-
+  has_many_attached :attachments
   belongs_to :task_list
   belongs_to :project
 
-  has_many_attached :attachments
+  accepts_nested_attributes_for :users
 
   validates_presence_of :title, :end_date, :users
 
   enum priority: [:no_priority, :low, :medium, :high]
+
+  delegate :project, to: :task_list
 
   def toggle_complete
     if self.complete
@@ -27,5 +26,4 @@ class Task < ApplicationRecord
 
     self.save
   end
-
 end

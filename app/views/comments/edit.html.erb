@@ -1,0 +1,6 @@
+<h2>Edit a comment</h2>
+<hr>
+<%= simple_form_for @comment, url: project_task_list_task_comment_path(@comment) do |f| %>
+  <%= f.rich_text_area :body %>
+  <%= f.submit 'Update comment', class: 'btn btn-md btn-primary mt-3' %>
+<% end %>

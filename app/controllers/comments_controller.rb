@@ -15,6 +15,23 @@ class CommentsController < ApplicationController
       end 
     end
   end 
+
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:task_id])
+    @comment = Comment.find(params[:id])
+
+    if @comment.update comment_params
+      flash[:success] = "Successfully updated your comment"
+      redirect_to project_task_list_task_path(@task.project, @task.task_list, @task) 
+    else
+      flash[:danger] = @comment.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
   
   def destroy
     @task = Task.find(params[:task_id])
