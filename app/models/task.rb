@@ -15,7 +15,7 @@ class Task < ApplicationRecord
 
   enum priority: [:no_priority, :low, :medium, :high]
 
-  delegate :project, to: :task_list
+  delegate :project, to: :task_list, allow_nil: true
 
   def toggle_complete
     if self.complete
