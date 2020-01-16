@@ -16,6 +16,9 @@
     <% task.users.each do |user| %>
       <span class='badge badge-success'><%= user.full_name %></span>
     <% end %>
+    <% task.categories.each do |category| %>
+      <span class='badge badge-<%= category.color %>'><%= category.name %></span>
+    <% end %>
     <%= link_to task.title, project_task_list_task_path(@project, task.task_list, task), class: 'black' %>
     <%= "(Due #{task.end_date.strftime("%h %d")})" %>
   </div>

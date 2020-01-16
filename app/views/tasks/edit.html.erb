@@ -26,5 +26,7 @@
 
   <%= f.input :priority, collection: Task.priorities.keys %>
 
+  <%= f.association :categories %>
+
   <%= f.submit class: 'btn btn-md btn-primary'%>
 <% end %>

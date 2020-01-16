@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  petergate(roles: [:super_admin, :admin], multiple: false)
+  petergate(roles: [:admin], multiple: false)
 
   devise :invitable, :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :trackable

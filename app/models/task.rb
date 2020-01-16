@@ -6,6 +6,8 @@ class Task < ApplicationRecord
   has_many :users, through: :user_tasks
   has_many :comments, dependent: :destroy
   has_many_attached :attachments
+  has_many :task_categories, dependent: :destroy
+  has_many :categories, through: :task_categories
   belongs_to :task_list
   belongs_to :project
 

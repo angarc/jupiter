@@ -31,3 +31,10 @@ $blue: #00d8d6;
   padding: 10px;
   border-top: 1px solid grey;
 }
+
+.list-group-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+}

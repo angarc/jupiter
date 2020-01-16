@@ -1,0 +1,11 @@
+<h2>Edit a Category</h2>
+
+<%= simple_form_for @category do |f| %>
+
+  <%= f.input :name %>
+
+  <%= f.input :color, collection: [["Blue", "primary"], ["Red", "danger"], ["Green", "success"], ["Cyan", "info"], ["Yellow", "warning"], ["Grey", "secondary"]] %>
+
+  <%= f.submit class: 'btn btn-primary' %>
+
+<% end %>

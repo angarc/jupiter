@@ -1,0 +1,49 @@
+<h1 class='float-left'>Categories</h1>
+
+<div class='float-right'>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal">
+    <%= fa_icon('plus') %>
+  </button>
+</div>
+
+<div class='fix-float'></div>
+
+<div class='categories'
+  <ul class='list-group'>
+    <%= render @categories %>
+  </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog" aria-labelledby="newCategoryModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newCategoryModalTitle">Create A New Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for @category, remote: :true do |f| %>
+        <div class="modal-body">
+          <div class='row'>
+            <div class='col-lg-12'>
+              <%= f.input :name %>
+            </div>
+            <div class='col-lg-12'>
+              <%= f.input :color, collection: [["Blue", "primary"], ["Red", "danger"], ["Green", "success"], ["Cyan", "info"], ["Yellow", "warning"], ["Grey", "secondary"]] %>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,24 @@
+<li class='list-group-item' data-category-id="<%= category.id %>">
+  <div class='info float-left'>
+    <span class='badge badge-<%= category.color %>'><%= category.name %></span>
+  </div>
+
+  <div class='actions float-right'>
+    <div class="dropdown float-right">
+      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= fa_icon('cog') %>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to 'Edit', 
+                    edit_category_path(category),  
+                    class: 'dropdown-item' %>
+        <%= link_to 'Delete', 
+                category_path(category),
+                method: :delete, 
+                class: 'dropdown-item',
+                remote: true,
+                data: { confirm: 'Are you sure you want to delete this category?' } %>
+      </div>
+    </div>
+  </div>
+</li>
