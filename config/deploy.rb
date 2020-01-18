@@ -16,6 +16,19 @@ set :keep_releases, 5
 # This is useful if you don't want to use ENV variables
 append :linked_files, 'config/master.key'
 
+after "deploy:assets:precompile", "deploy:bin_webpack"
+
+namespace :deploy do
+  desc 'Run rake yarn:install'
+  task :bin_webpack do
+    on roles(:web) do
+      within current_path do
+        execute("cd #{current_path} && bin/webpack")
+      end
+    end
+  end
+end
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
