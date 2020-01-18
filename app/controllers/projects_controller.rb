@@ -1,8 +1,10 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:destroy, :show, :update, :edit]
+  before_action :set_project, only: [:destroy, :show, :update, :edit, :authorize]
+  before_action :authorize, except: [:index]
+  access user: { except: [:edit, :update] }, admin: [:edit, :update]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
     @project = Project.new
   end
 
@@ -58,4 +60,10 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:name)
     end
 
+    def authorize
+      if !@project.assigned_to?(current_user) 
+        flash[:danger] = "You are not authorized to view this project"
+        redirect_to root_path
+      end
+    end
 end

@@ -8,9 +8,11 @@
                 project, 
                 class: 'btn btn-sm btn-primary' %>
 
-    <%= link_to fa_icon('edit'),
-                edit_project_path(project), 
-                class: 'btn btn-sm btn-primary' %>
+    <% if logged_in?(:admin) %>
+      <%= link_to fa_icon('edit'),
+                  edit_project_path(project), 
+                  class: 'btn btn-sm btn-primary' %>
+    <% end %>
 
     <%= link_to fa_icon('trash'), 
                 project, 

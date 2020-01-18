@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  access admin: :all
 
   def index
     @category   = Category.new

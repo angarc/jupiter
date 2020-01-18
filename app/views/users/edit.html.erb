@@ -1,0 +1,7 @@
+<h1><%= @user.full_name %></h1>
+<hr>
+<%= simple_form_for @user do |f| %>
+  <h3>Projects</h3>
+  <%= f.association :projects, as: :check_boxes, label: ''%>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

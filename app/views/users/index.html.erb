@@ -1,0 +1,11 @@
+<h1>Users</h1>
+
+<ul class='list-group'>
+  <% @users.all.each do |user| %>
+    <li class='list-group-item'>
+      <div class='info'>
+        <%= link_to user.full_name, edit_user_path(user) %>
+      </div>
+    </li>
+  <% end %>
+</ul>

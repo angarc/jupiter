@@ -23,4 +23,8 @@ class Project < ApplicationRecord
     user.tasks.where(project: self).not_complete
   end
 
+  def assigned_to?(user)
+    users.include?(user)
+  end
+
 end

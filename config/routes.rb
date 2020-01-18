@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   resources :categories
+  resources :users
 
   resources :projects do 
     get :completed_tasks

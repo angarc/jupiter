@@ -1,5 +1,5 @@
 class Users::InvitationsController < Devise::InvitationsController
-  access all: [:edit, :update], super_admin: :all
+  access all: [:edit, :update], admin: :all
   before_action :configure_permitted_parameters
   layout :set_layout
 
