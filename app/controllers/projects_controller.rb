@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:destroy, :show, :update, :edit, :authorize]
+  before_action :set_project, only: [:destroy, :show, :update, :edit]
   before_action :authorize, except: [:index]
   access user: { except: [:edit, :update] }, admin: [:edit, :update]
 
@@ -47,13 +47,13 @@ class ProjectsController < ApplicationController
   end
 
   def completed_tasks
-    @project = Project.friendly.find(params[:project_id])
+    @project = Project.friendly.find(params[:id])
     @tasks = @project.tasks.completed
   end
 
   private
     def set_project
-      @project = Project.all.friendly.find(params[:id])
+      @project = Project.friendly.find(params[:id])
     end
 
     def project_params
@@ -61,6 +61,7 @@ class ProjectsController < ApplicationController
     end
 
     def authorize
+      set_project
       if !@project.assigned_to?(current_user) 
         flash[:danger] = "You are not authorized to view this project"
         redirect_to root_path

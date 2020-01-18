@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :users
 
   resources :projects do 
-    get :completed_tasks
+    member do 
+      get :completed_tasks  
+    end
 
     resources :task_lists do 
       resources :tasks do 
