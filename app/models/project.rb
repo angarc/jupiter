@@ -19,4 +19,8 @@ class Project < ApplicationRecord
     "#{((self.tasks.completed.count.to_f / self.tasks.count.to_f) * 100).to_i}%"
   end
 
+  def active_tasks_for(user)
+    user.tasks.where(project: self).not_complete
+  end
+
 end

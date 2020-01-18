@@ -1,0 +1,24 @@
+<h1>Dashboard</h1>
+<br>
+<h3>Active Tasks</h3>
+<hr>
+<% @projects.each do |project| %>
+  <div class='card'>
+    <div class='card-body'>
+      <h3><%= project.name %></h3>
+      <hr>
+
+      <% project.active_tasks_for(current_user).each do |task| %>
+        <ul class='list-group'>
+          <li class='list-group-item'>
+            <div class='info'>
+              <%= link_to task.title, project_task_list_task_path(task.project, task.task_list, task) %>
+              <%= "(Due #{task.end_date.strftime("%h %d")})" %>
+            </div>
+            </br>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>
