@@ -28,7 +28,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="newTaskModal-<%= task_list.id %>" tabindex="-1" role="dialog" aria-labelledby="newTaskModalTitle-<%= task_list.id %>" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="newTaskModalTitle-<%= task_list.id %>">New Task</h5>
@@ -68,7 +68,7 @@
               </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <%= f.input :description %>
+              <%= f.rich_text_area :description %>
             </div>
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
               <div class='row'>

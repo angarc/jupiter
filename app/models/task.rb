@@ -11,6 +11,8 @@ class Task < ApplicationRecord
   belongs_to :task_list
   belongs_to :project
 
+  has_rich_text :description
+
   accepts_nested_attributes_for :users
 
   validates_presence_of :title, :end_date, :users
