@@ -1,13 +1,13 @@
 @import 'trix/dist/trix';
 
 .trix-button-group {
-  background-color:#00d8d6 !important;
+  background-color:#0984e3 !important;
   padding: 3px !important;
   .trix-button {
     border: none !important;
   }
   .trix-active {
-    background-color: darken(#ff9f43, 20%) !important;
+    background-color: darken(#0984e3, 10%) !important;
   }
   .trix-button-icon {
     color: white !important;
