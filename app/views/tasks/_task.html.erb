@@ -14,7 +14,7 @@
                   class: 'btn btn-danger btn-sm' %>
     <% end %>
     <% task.users.each do |user| %>
-      <span class='badge badge-success'><%= user.full_name %></span>
+      <span class='badge badge-primary'><%= user.full_name %></span>
     <% end %>
     <% task.categories.each do |category| %>
       <span class='badge badge-<%= category.color %>'><%= category.name %></span>
