@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:destroy, :show, :update, :edit]
-  before_action :authorize, except: [:index]
+  before_action :authorize, except: [:index, :new, :create]
   access user: { except: [:edit, :update] }, admin: [:edit, :update]
 
   def index
@@ -13,6 +13,9 @@ class ProjectsController < ApplicationController
 
     if @project.save
       current_user.projects << @project
+      User.where(roles: :admin).each do |admin|
+        admin.projects << @project unless current_user == admin
+      end
       flash[:success] = 'Successfully Created Project'
       redirect_to @project
     else
