@@ -22,8 +22,8 @@ namespace :deploy do
   desc 'Run rake yarn:install'
   task :bin_webpack do
     on roles(:web) do
-      within current_path do
-        execute("cd #{current_path} && bin/webpack")
+      within release_path do
+        execute("cd #{release_path} && bin/webpack")
       end
     end
   end
