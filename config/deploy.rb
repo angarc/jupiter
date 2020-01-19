@@ -7,7 +7,7 @@ set :repo_url, "https://github.com/angarc/jupiter.git"
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
 
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'public/packs', 'node_modules'
 
 # Only keep the last 5 releases to save disk space
 set :keep_releases, 5
@@ -16,14 +16,13 @@ set :keep_releases, 5
 # This is useful if you don't want to use ENV variables
 append :linked_files, 'config/master.key'
 
-after "deploy:finished", "deploy:bin_webpack"
-
+before "deploy:assets:precompile", "deploy:yarn_install"
 namespace :deploy do
-  desc 'Run rake bin_webpack'
-  task :bin_webpack do
+  desc "Run rake yarn install"
+  task :yarn_install do
     on roles(:web) do
       within release_path do
-        execute("./bin/webpack")
+        execute("cd #{release_path} && yarn install --silent --no-progress --no-audit --no-optional")
       end
     end
   end
