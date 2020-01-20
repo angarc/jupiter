@@ -1,6 +1,17 @@
 # Jupiter
 
+Jupiter is project management software that can organize tasks and help visualize progress.
 
-## Optimzations
+## Features
 
-* Ensure that there isn't N+1 queries on dashboard main page
+* Task Organization
+* Categorization
+* Authorized Projects (Admin Ability)
+ 
+## Tech Stack
+
+* Ruby On Rails
+* jQuery
+* SCSS
+* Bootstrap
+

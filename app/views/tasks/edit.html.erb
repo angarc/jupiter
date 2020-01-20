@@ -22,7 +22,10 @@
 
   <%= f.input :complete %>
 
-  <%= f.input :attachments %>
+  <label>Attachments</label>
+  <div class='form-group'>
+    <%= f.file_field :attachments, class: 'form-control' %>
+  </div>
 
   <%= f.input :priority, collection: Task.priorities.keys %>
 
