@@ -2,9 +2,12 @@
 
 <ul class='list-group'>
   <% @users.all.each do |user| %>
-    <li class='list-group-item'>
+    <li class='list-group-item' data-id="<%= user.id %>">
       <div class='info'>
         <%= link_to user.full_name, edit_user_path(user) %>
+      </div>
+      <div class='actions'>
+        <%= link_to fa_icon('trash'), user_path(user), method: :delete, remote: true, class: 'btn btn-sm btn-danger', data: { confirm: "Are you sure?" } %>
       </div>
     </li>
   <% end %>
