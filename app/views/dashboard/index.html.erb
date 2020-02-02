@@ -8,8 +8,8 @@
       <h3><%= project.name %></h3>
       <hr>
 
-      <% project.active_tasks_for(current_user).each do |task| %>
-        <ul class='list-group'>
+      <ul class='list-group'>
+        <% project.active_tasks_for(current_user).each do |task| %>
           <li class='list-group-item'>
             <div class='info'>
               <%= link_to task.title, project_task_list_task_path(task.project, task.task_list, task) %>
@@ -17,8 +17,8 @@
             </div>
             </br>
           </li>
-        </ul>
-      <% end %>
+        <% end %>
+      </ul>
     </div>
   </div>
 <% end %>
