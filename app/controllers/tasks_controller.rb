@@ -7,6 +7,10 @@ class TasksController < ApplicationController
     @task = Task.new task_params
     @project.tasks << @task
     @task_list.tasks << @task
+    
+    if @task.start_date == nil
+      @task.start_date = Date.today
+    end
 
     if @task.save
       respond_to do |format|
@@ -67,6 +71,7 @@ class TasksController < ApplicationController
                                    :priority, 
                                    :attachments, 
                                    :complete, 
+                                   :task_list_id,
                                    user_ids: [], 
                                    category_ids: [])
     end
