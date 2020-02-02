@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    return if current_user.role != :super_admin
+    return if current_user.role != :admin
     @project.destroy
     respond_to do |format|
       format.js
