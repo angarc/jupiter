@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Jupiter</title>
+    <title>Jupiter | Log In</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'auth', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body id="page-top">
     <div class='container'>
-      <%= yield %>
+      <div class='row'>
+        <div class='col-lg-8 offset-lg-2 flex-center-align'>
+          <div class='card'>
+            <div class='card-body'>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

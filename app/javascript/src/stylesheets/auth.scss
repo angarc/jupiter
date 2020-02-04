@@ -1,0 +1,12 @@
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  background-color: grey;
+}
+
+.flex-center-align {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
