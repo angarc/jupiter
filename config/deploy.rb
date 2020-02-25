@@ -28,6 +28,16 @@ namespace :deploy do
   end
 end
 
+namespace :deploy do 
+  task :skip_assets do
+    puts Airbrussh::Colors.yellow('** Skipping asset compile.')
+    Rake::Task['deploy:assets:precompile'].clear_actions
+    Rake::Task['deploy:assets:backup_manifest'].clear_actions
+  end
+end
+
+before 'deploy:starting', 'deploy:skip_assets'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
